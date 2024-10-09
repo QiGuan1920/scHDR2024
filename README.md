@@ -21,4 +21,4 @@ The `Train` function takes a dataset identifier (e.g., `GSE149383`) as input and
 
 ## Notebook Example
 
-We also provide a Jupyter Notebook that showcases how to run the scHDR model and provides detailed results for better reproducibility and understanding. T
+We also provide a Jupyter Notebook that showcases how to run the scHDR model and provides detailed results for better reproducibility and understanding.
