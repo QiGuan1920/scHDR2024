@@ -15,7 +15,7 @@ def Train(S):
     results = pd.DataFrame(columns=['N', 'AUC', 'AUPR', 'Threshold', 'Accuracy', 'Precision', 'F1'])
     i = 0
     
-    while i < 3:  # 限制重试次数，避免无限循环
+    while i < 10:  # 限制重试次数，避免无限循环
         try:
             Process = process(S)
             all_attributes = dir(Process)
