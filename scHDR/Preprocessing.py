@@ -1,10 +1,3 @@
-# 中文注释翻译 -*- coding: utf-8 -*-
-"""
-Created on Sat Apr 20 12:51:11 2024
-
-@author: 78760
-"""
-
 from HDRTF import *
 from dgl.data.utils import save_graphs, load_graphs
 
