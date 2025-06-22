@@ -18,10 +18,7 @@ from sklearn.metrics import roc_curve, accuracy_score, precision_score, f1_score
 
 
 # 设置随机种子
-# # seed = 1000
-# # seed = 100
 # seed = 14
-# # # seed = 1
 # torch.manual_seed(seed)
 # random.seed(seed)
 # np.random.seed(seed)
