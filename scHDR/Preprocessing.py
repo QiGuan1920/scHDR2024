@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Apr 20 12:51:11 2024
-
-@author: 78760
-"""
-
 from HDRTF import *
 from dgl.data.utils import save_graphs, load_graphs
 
@@ -50,11 +43,11 @@ class process:
         dec_graph = source_X_graph['drug', :, 'cell']
         edge_label = dec_graph.edata[dgl.ETYPE]
 
-        # 获取唯一的边类型标签
+        # Get unique edge type labels
         unique_labels = torch.unique(edge_label)
-        # 构建从0开始的映射
+        # Create a mapping starting from 0
         label_map = {label.item(): idx for idx, label in enumerate(unique_labels)}
-        # 根据映射更新边类型标签
+        # Update edge type labels according to the mapping
         edge_label2 = torch.tensor([label_map[label.item()] for label in edge_label])
 
 
@@ -63,7 +56,7 @@ class process:
         idx = np.arange(num_edges)
         # Shuffle the indices randomly
         np.random.shuffle(idx)
-        # Divide the edges into five parts
+        # Split the edges into five parts
         folds = np.array_split(idx, 5)
         
         self.dec_graph = dec_graph
@@ -103,11 +96,11 @@ class process:
         dec_graph_ = target_X_graph['drug', :, 'cell']
         edge_label_ = dec_graph_.edata[dgl.ETYPE]
 
-        # 获取唯一的边类型标签
+        # Get unique edge type labels
         unique_labels = torch.unique(edge_label_)
-        # 构建从0开始的映射
+        # Create a mapping starting from 0
         label_map = {label.item(): idx for idx, label in enumerate(unique_labels)}
-        # 根据映射更新边类型标签
+        # Update edge type labels according to the mapping
         edge_label2_ = torch.tensor([label_map[label.item()] for label in edge_label_])
         
         self.dec_graph_ = dec_graph_
@@ -116,29 +109,15 @@ class process:
 
 
 
+
 def lossloss(linkmodel, graph, k, embeddings, etype):
     
+    # Construct the negative graph for evaluation
     negative_graph = construct_negative_graph(graph, k, etype)
+    # Calculate the positive and negative scores
     pos_score = linkmodel(graph,  embeddings, etype)
     neg_score = linkmodel(negative_graph, embeddings, etype)
+    # Compute the loss using the positive and negative scores
     link_lossloss = compute_loss1(pos_score, neg_score)
     
     return link_lossloss
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
