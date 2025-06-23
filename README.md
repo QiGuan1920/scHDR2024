@@ -17,7 +17,7 @@ from TrainHDR import Train
 results_GSE149383, scores_df_GSE149383 = Train(S='GSE149383')
 ```
 
-The `Train` function takes a dataset identifier (e.g., `GSE149383`) as input and returns the prediction results (`results_GSE149383`) and the evaluation scores (`scores_df_GSE149383`).
+The `Train` function takes a dataset identifier (e.g., `GSE149383`) as input and returns the prediction results (`results_GSE149383`) and the response scores (`scores_df_GSE149383`).
 
 ## Notebook Example
 
