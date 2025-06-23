@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Apr 19 16:52:26 2024
-
-@author: 78760
-"""
-
 import numpy as np
 import dgl
 import torch
@@ -15,17 +8,6 @@ from dgl.nn.pytorch import RelGraphConv
 import dgl.nn as dglnn
 from dgl import function as fn
 from sklearn.metrics import roc_curve, accuracy_score, precision_score, f1_score, roc_auc_score,average_precision_score
-
-
-# Set random seed
-# # seed = 1000
-# # seed = 100
-# seed = 14
-# # # seed = 1
-# torch.manual_seed(seed)
-# random.seed(seed)
-# np.random.seed(seed)
-
 
 class HeteroRGCN(nn.Module):
     def __init__(self, in_feats, hid_feats, out_feats, rel_names):
@@ -56,11 +38,9 @@ class HeteroMLPPredictor(nn.Module):
 		return {'score': y}
 
 	def forward(self, graph, h):
-		# h contains the node representations for each edge type computed from
-		# the GNN for heterogeneous graphs defined in the node classification
-		# section (Section 5.1).
+		# h contains the node representations
 		with graph.local_scope():
-			graph.ndata['h'] = h   # assigns 'h' of all node types in one shot
+			graph.ndata['h'] = h   
 			graph.apply_edges(self.apply_edges)
 			return graph.edata['score']
         
